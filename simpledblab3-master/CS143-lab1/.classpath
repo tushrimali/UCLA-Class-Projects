@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/java"/>
+	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="lib" path="lib/ant-contrib-1.0b3.jar"/>
+	<classpathentry kind="lib" path="lib/junit-4.5.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/Users/tusharshrimali/Desktop/UCLA/Junior Year/Spring Quarter/Classes/CS 143/CS143-lab1/lib/jline-0.9.94.jar"/>
+	<classpathentry kind="lib" path="/Users/tusharshrimali/Desktop/UCLA/Junior Year/Spring Quarter/Classes/CS 143/CS143-lab1/lib/junit-4.5.jar"/>
+	<classpathentry kind="lib" path="/Users/tusharshrimali/Desktop/UCLA/Junior Year/Spring Quarter/Classes/CS 143/CS143-lab1/lib/zql.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

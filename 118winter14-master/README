@@ -1,0 +1,55 @@
+-- README CS 118 Winter 2014 Project 2 --
+
+Team: Tushar Shrimali and Sixiang Gu
+
+Project Description:
+We have written most of the code in sr_router.c and sr_arpcache.c with minor changes in sr_if.c and sr_protocol.h
+
+On receiving a packet, the router checks to see if it is of type ARP or of type IP. Accordingly, there are two functions that perform subsequent processing - process_ether_type_ip and process_ether_type_arp
+
+
+-------------------------------------------------
+This is the psuedocode for process_ether_type_ip:
+
+If packet destined for Router's interface
+	If Packet ICMP and contains ECHO
+		send echo reply
+	If Packet TCP/UDP
+		Send ICMP (3,3)
+
+If Packet not destined for Router's interface
+	If no match in routing table
+		Send ICMP (3,0)
+	If ttl=0
+		Send ICMP (11,0)
+	else
+		Lookup Next hop entry in cache 
+			sr_send_packet
+		else
+			Prepare ARP req
+			handle_arpreq(sr, req);
+--------------------------------------------------
+
+
+--------------------------------------------------
+This is the psuedocode for process_ether_type_arp:
+
+Iterate through router interface list
+If interface found
+	If op_code = ARP Request
+		Generate ARP Reply
+	If op_code = ARP Reply
+		Check if there is an ARP Request in queue
+		Forward all packets in queue
+--------------------------------------------------
+
+
+In sr_arpcache.c, the function handle_arpreq is implemented pretty much in the same way the spec shows us. There are two additional functions in this file - generate_icmp_message and generate_arp_request. Generate_icmp_message is called to create a packet for sending ICMP (3,1) and generate_arp_request is called to send routine ARP Requests from handle_arpreq (every 1 second)
+
+The program implements the following features correctly:
+
+	Pinging from the client to any of the router's interfaces (192.168.2.1, 172.64.3.1, 10.0.1.1).
+	Tracerouting from the client to any of the router's interfaces
+	Pinging from the client to any of the app servers (192.168.2.2, 172.64.3.10)
+	Tracerouting from the client to any of the app servers
+	Downloading a file using HTTP from one of the app servers
